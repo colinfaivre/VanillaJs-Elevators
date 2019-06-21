@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
     devtool: "cheap-eval-source-map",
-    entry: "./src/app.js",
+    entry: ["babel-polyfill", "./src/app.js"],
     output: {
         path: path.resolve(__dirname, "public"),
         filename: "app.js",
@@ -13,7 +13,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: "babel-loader"
+                loader: "babel-loader"
             }
         ]
     }

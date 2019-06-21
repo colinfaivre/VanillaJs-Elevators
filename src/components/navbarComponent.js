@@ -1,13 +1,13 @@
-export const myComponent = {
-    myComponentElement: document.getElementById('my-component'),
+export const navbarComponent = {
+    navbarComponentElement: document.getElementById('top-nav'),
     kill: () => {
-        myComponent.myComponentElement.innerHTML = ''
+        navbarComponent.navbarComponentElement.innerHTML = ''
     },
     render: () => {
-        myComponent.myComponentElement.innerHTML =
+        navbarComponent.navbarComponentElement.innerHTML =
         `
             <div class="nav-left">
-                App title
+                Elevator Simulation
             </div>
         `
         // Elements
