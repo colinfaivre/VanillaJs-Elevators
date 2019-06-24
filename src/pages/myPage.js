@@ -10,6 +10,8 @@ export const myPage = {
     render: (myPageData) => {
         myPage.myPageElement.innerHTML = 
         `
+            <div class="middle-top">Building</div>
+
             <div class="floor">
                 Floor 10
                 <div class="floor-right">

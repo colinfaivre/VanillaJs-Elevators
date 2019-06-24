@@ -14,40 +14,59 @@ export default class Elevator {
         this.isTraveling = false
         this.travelDuration = 0
         this.travelDistance = 0
+        this.destinationMemory = []
+        this.emergency = false
     }
 
     // TODO : Move the destination and direction validation to the brain
     call(callFloor, callDirection) {
         if (this.isDestinationValid(callFloor) && this.isDirectionValid(callDirection, callFloor)) {
-            console.log(`${this.name} was called from floor ${callFloor}`)
             this.goToFloor(callFloor)
         } else {
             this.showError('Invalid call')
         }
     }
     
+    emergencyButtonWasPressed() {
+        this.emergency = true
+        console.log('emergency was pressed', this.emergency)
+
+    }
+    resetEmergency() {
+        this.emergency = false
+        console.log('emergency was reset', this.emergency)
+    }
+
     floorButtonPressed(callDestination) {
-        console.log(`${callDestination }'s button was pressed in ${this.name}`)
         this.goToFloor(callDestination)
     }
 
-    // TODO : Add setTimeOut in the loop with promise (to delay the elevator moves)
     async goToFloor(callFloor) {
+        this.closeDoors()
         this.travelDestination = callFloor
         this.travelDirection = this.setTravelDirection(callFloor)
         this.isTraveling = true
         this.travelDistance = this.setTravelDistance(callFloor)
 
-        console.log(`${this.name} is moving ${this.travelDirection} from ${this.position} to ${this.travelDestination}`)
         this.getPosition()
-
-        
         
         for(let travel = 0; travel < this.travelDistance; travel++ ) {
             await this.wait(1000)
             if (this.travelDirection === 'up') {
+                if (this.emergency) {
+                    this.destinationMemory = []
+                    this.isTraveling = false
+                    this.openDoors()
+                    return
+                }
                 this.position++
             } else {
+                if (this.emergency) {
+                    this.destinationMemory = []
+                    this.isTraveling = false
+                    this.openDoors()
+                    return
+                }
                 this.position--
             }
             this.getPosition()
@@ -55,7 +74,18 @@ export default class Elevator {
             elevatorBComponent.render()
         }
         
+        this.isTraveling = false
         this.openDoors()
+        if (this.destinationMemory.length !== 0) {
+            await this.wait(3000)
+            this.isTraveling === true
+            this.closeDoors()
+            var nextDestination = this.destinationMemory[0]
+            this.destinationMemory.shift()
+            this.goToFloor(nextDestination)
+            this.isTraveling === false
+            console.log("destinationMemory: ", this.destinationMemory)
+        }
     }
 
     async wait(ms) {
@@ -100,19 +130,26 @@ export default class Elevator {
 
     openDoors() {
         this.doors = "opened"
-        console.log(`${this.name} doors are ${this.doors}`)
         elevatorAComponent.render()
         elevatorBComponent.render()
     }
 
     closeDoors() {
         this.doors = "closed"
-        console.log(`${this.name} doors are ${this.doors}`)
         elevatorAComponent.render()
         elevatorBComponent.render()
     }
     
     showError(message) {
         console.log(message)
+    }
+
+    isInMemory(floor) {
+        console.log('IsInMemory Called')
+        if (this.destinationMemory.includes(floor)) {
+            return true
+        } else {
+            return false
+        }
     }
 }

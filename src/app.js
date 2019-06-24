@@ -18,8 +18,25 @@ export const brain = {
             elevatorB.call(callFloor, direction)
             // elevatorB.floorButtonPressed(destination)
         }
+    },
+
+    elevatorButtonWasPressed(elevator, destination) {
+        if (elevator === "A") {
+            if (elevatorA.isTraveling || elevatorA.destinationMemory.length !== 0) {
+                console.log('ElevatorA is already traveling')
+                elevatorA.destinationMemory.push(destination)
+                console.log('ElevatorA memory :', elevatorA.destinationMemory)
+            } else {
+                elevatorA.goToFloor(destination)
+            }
+        } else if (elevator === "B") {
+            if (elevatorB.isTraveling || elevatorB.destinationMemory.length !== 0) {
+                console.log('ElevatorB is already traveling')
+                elevatorB.destinationMemory.push(destination)
+                console.log('ElevatorB memory :', elevatorB.destinationMemory)
+            } else {
+                elevatorB.goToFloor(destination)
+            }
+        }
     }
 }
-
-// brain.callButtonWasPressed(9, "down", 3)
-// brain.callButtonWasPressed(1, "up", 3)

@@ -22,18 +22,6 @@ body {
     color: white;
 }
 
-#top-nav {
-    background-color: var(--medium-blue);
-    padding: 0px 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    z-index: 10;
-    position: static;
-    color: white;
-}
 section {
     display: flex;
     justify-content: space-between;
@@ -41,7 +29,7 @@ section {
 #left-nav, #right-nav {
     width: 200px;
     background-color: var(--light-blue);
-    height: calc(100vh - 60px);
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,7 +38,7 @@ section {
     z-index: 10;
 }
 #my-page {
-    height: calc(100vh - 60px);
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,10 +70,6 @@ section {
     color: white;
     border-color: white;
 }
-.doors-state {
-    color: grey;
-}
-
 .floor {
     height: 50px;
     margin-bottom: 5px;
@@ -110,5 +94,32 @@ section {
 }
 
 button {
+    cursor: pointer;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+}
+.middle-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 73px;
+}
+.elevator-title {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.doors-state {
+    font-size: 12px;
+    color: grey;
+    margin-bottom: 10px;    
+}
+.emergency {
     cursor: pointer;
 }
