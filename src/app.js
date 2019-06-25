@@ -10,11 +10,11 @@ router.goToMyPage()
 export const brain = {
     // When elevators are called from a floor, the brain calls the nearest Elevator
     callButtonWasPressed(callFloor, direction, destination) {
-        if (Math.abs(elevatorA.position - callFloor) <= Math.abs(elevatorB.position - callFloor) || callFloor === (-1)) {
+        if (Math.abs(elevatorA.position - callFloor) <= Math.abs(elevatorB.position - callFloor) || callFloor === (-1) || elevatorB.emergency === true) {
             elevatorA.call(callFloor, direction)
             // elevatorA.floorButtonPressed(destination)
         }
-        else if (Math.abs(elevatorA.position - callFloor) > Math.abs(elevatorB.position - callFloor) || callFloor === 10) {
+        else if (Math.abs(elevatorA.position - callFloor) > Math.abs(elevatorB.position - callFloor) || callFloor === 10 || elevatorA.emergency === true) {
             elevatorB.call(callFloor, direction)
             // elevatorB.floorButtonPressed(destination)
         }

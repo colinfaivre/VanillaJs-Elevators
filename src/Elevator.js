@@ -29,12 +29,14 @@ export default class Elevator {
     
     emergencyButtonWasPressed() {
         this.emergency = true
-        console.log('emergency was pressed', this.emergency)
+        elevatorAComponent.render()
+        elevatorBComponent.render()
 
     }
     resetEmergency() {
         this.emergency = false
-        console.log('emergency was reset', this.emergency)
+        elevatorAComponent.render()
+        elevatorBComponent.render()
     }
 
     floorButtonPressed(callDestination) {

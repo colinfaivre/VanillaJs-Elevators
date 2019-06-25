@@ -139,3 +139,10 @@ section {
 .emergency {
     cursor: pointer;
 }
+
+.disabled {
+    color: grey;
+}
+.open-doors {
+    color: white;
+}

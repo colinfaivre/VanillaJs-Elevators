@@ -9,11 +9,11 @@ export const elevatorBComponent = {
         elevatorBComponent.elevatorBComponentElement.innerHTML =
         `
             <div class="top">
-                <i class="material-icons">notifications</i>
+                <i id="startB-emergency" class="material-icons emergency ${elevatorB.emergency ? '' : 'disabled'}">notifications</i>
                 <span class="elevator-title">Elevator B</span>
-                <i class="material-icons">notifications_off</i>
+                <i id="stopB-emergency" class="material-icons emergency ${elevatorB.emergency ? 'disabled' : ''}">notifications_off</i>
             </div>
-            <div class="doors-state">Doors ${elevatorB.doors}</div>
+            <div class="doors-state ${elevatorB.doors === 'opened' ? 'open-doors' : ''}">Doors ${elevatorB.doors}</div>
             <div id="elevatorB-button-10" class="floor-number${elevatorB.position === 10 ? ' current-floor' : ''}">10</div>
             <div id="elevatorB-button-9" class="floor-number${elevatorB.position === 9 ? ' current-floor' : ''}">9</div>
             <div id="elevatorB-button-8" class="floor-number${elevatorB.position === 8 ? ' current-floor' : ''}">8</div>
@@ -39,6 +39,8 @@ export const elevatorBComponent = {
         const elevatorBButton2Element = document.getElementById('elevatorB-button-2')
         const elevatorBButton1Element = document.getElementById('elevatorB-button-1')
         const elevatorBButton0Element = document.getElementById('elevatorB-button-0')
+        const startEmergencyButtonElement = document.getElementById('startB-emergency')
+        const stopEmergencyButtonElement = document.getElementById('stopB-emergency')
         // Event listeners
         elevatorBButton10Element.addEventListener('click', () => {
             brain.elevatorButtonWasPressed('B', 10)
@@ -72,6 +74,12 @@ export const elevatorBComponent = {
         })
         elevatorBButton0Element.addEventListener('click', () => {
             brain.elevatorButtonWasPressed('B', 0)
+        })
+        startEmergencyButtonElement.addEventListener('click', () => {
+            elevatorB.emergencyButtonWasPressed()
+        })
+        stopEmergencyButtonElement.addEventListener('click', () => {
+            elevatorB.resetEmergency()
         })
     }
 }

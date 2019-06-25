@@ -8,11 +8,11 @@ export const elevatorAComponent = {
         elevatorAComponent.elevatorAComponentElement.innerHTML =
         `
             <div class="top">
-                <i id="start-emergency" class="material-icons emergency">notifications</i>
+                <i id="start-emergency" class="material-icons emergency ${elevatorA.emergency ? '' : 'disabled'}">notifications</i>
                 <span class="elevator-title">Elevator A</span>
-                <i id="stop-emergency" class="material-icons emergency">notifications_off</i>
+                <i id="stop-emergency" class="material-icons emergency ${elevatorA.emergency ? 'disabled' : ''}">notifications_off</i>
             </div>
-            <div class="doors-state">Doors ${elevatorA.doors}</div>
+            <div class="doors-state ${elevatorA.doors === 'opened' ? 'open-doors' : ''}">Doors ${elevatorA.doors}</div>
             <div class="floor-number ghost-floor-number"></div>
             <div id="elevatorA-button-9" class="floor-number${elevatorA.position === 9 ? ' current-floor' : ''}">9</div>
             <div id="elevatorA-button-8" class="floor-number${elevatorA.position === 8 ? ' current-floor' : ''}">8</div>
@@ -80,7 +80,5 @@ export const elevatorAComponent = {
         stopEmergencyButtonElement.addEventListener('click', () => {
             elevatorA.resetEmergency()
         })
-
-        // ${ elevatorA.position }
     }
 }
