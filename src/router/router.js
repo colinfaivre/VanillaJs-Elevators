@@ -11,7 +11,6 @@ export const router = {
         return router.currentRoute
     },
     goToMyPage: () => {
-        // otherPage.kill()
         router.setCurrentRoute('my-page')
         elevatorAComponent.render()
         elevatorBComponent.render()

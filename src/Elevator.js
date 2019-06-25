@@ -29,12 +29,16 @@ export default class Elevator {
     
     emergencyButtonWasPressed() {
         this.emergency = true
+        this.travelDestination = null
+        this.destinationMemory = []
         elevatorAComponent.render()
         elevatorBComponent.render()
 
     }
     resetEmergency() {
         this.emergency = false
+        this.travelDestination = null
+        this.destinationMemory = []
         elevatorAComponent.render()
         elevatorBComponent.render()
     }
@@ -83,18 +87,18 @@ export default class Elevator {
             this.isTraveling === true
             this.closeDoors()
             var nextDestination = this.destinationMemory[0]
-            this.destinationMemory.shift()
             this.goToFloor(nextDestination)
             this.isTraveling === false
             console.log("destinationMemory: ", this.destinationMemory)
+            this.destinationMemory.shift()
         }
     }
 
     async wait(ms) {
-    return new Promise(resolve => {
-        setTimeout(resolve, ms)
-    })
-}
+        return new Promise(resolve => {
+            setTimeout(resolve, ms)
+        })
+    }
 
     setTravelDirection(callFloor) {
         if (callFloor > this.position) {

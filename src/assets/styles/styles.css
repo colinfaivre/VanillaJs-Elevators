@@ -70,6 +70,9 @@ section {
     color: white;
     border-color: white;
 }
+.destination {
+    border-color: white;
+}
 .floor {
     height: 50px;
     margin-bottom: 5px;

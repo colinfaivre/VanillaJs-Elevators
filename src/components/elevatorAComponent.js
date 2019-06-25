@@ -14,17 +14,17 @@ export const elevatorAComponent = {
             </div>
             <div class="doors-state ${elevatorA.doors === 'opened' ? 'open-doors' : ''}">Doors ${elevatorA.doors}</div>
             <div class="floor-number ghost-floor-number"></div>
-            <div id="elevatorA-button-9" class="floor-number${elevatorA.position === 9 ? ' current-floor' : ''}">9</div>
-            <div id="elevatorA-button-8" class="floor-number${elevatorA.position === 8 ? ' current-floor' : ''}">8</div>
-            <div id="elevatorA-button-7" class="floor-number${elevatorA.position === 7 ? ' current-floor' : ''}">7</div>
-            <div id="elevatorA-button-6" class="floor-number${elevatorA.position === 6 ? ' current-floor' : ''}">6</div>
-            <div id="elevatorA-button-5" class="floor-number${elevatorA.position === 5 ? ' current-floor' : ''}">5</div>
-            <div id="elevatorA-button-4" class="floor-number${elevatorA.position === 4 ? ' current-floor' : ''}">4</div>
-            <div id="elevatorA-button-3" class="floor-number${elevatorA.position === 3 ? ' current-floor' : ''}">3</div>
-            <div id="elevatorA-button-2" class="floor-number${elevatorA.position === 2 ? ' current-floor' : ''}">2</div>
-            <div id="elevatorA-button-1" class="floor-number${elevatorA.position === 1 ? ' current-floor' : ''}">1</div>
-            <div id="elevatorA-button-0" class="floor-number${elevatorA.position === 0 ? ' current-floor' : ''}">0</div>
-            <div id="elevatorA-button-m1" class="floor-number${elevatorA.position === (-1) ? ' current-floor' : ''}">-1</div>
+            <div id="elevatorA-button-9" class="floor-number${elevatorA.position === 9 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(9)}">9</div>
+            <div id="elevatorA-button-8" class="floor-number${elevatorA.position === 8 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(8)}">8</div>
+            <div id="elevatorA-button-7" class="floor-number${elevatorA.position === 7 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(7)}">7</div>
+            <div id="elevatorA-button-6" class="floor-number${elevatorA.position === 6 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(6)}">6</div>
+            <div id="elevatorA-button-5" class="floor-number${elevatorA.position === 5 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(5)}">5</div>
+            <div id="elevatorA-button-4" class="floor-number${elevatorA.position === 4 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(4)}">4</div>
+            <div id="elevatorA-button-3" class="floor-number${elevatorA.position === 3 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(3)}">3</div>
+            <div id="elevatorA-button-2" class="floor-number${elevatorA.position === 2 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(2)}">2</div>
+            <div id="elevatorA-button-1" class="floor-number${elevatorA.position === 1 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(1)}">1</div>
+            <div id="elevatorA-button-0" class="floor-number${elevatorA.position === 0 ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed(0)}">0</div>
+            <div id="elevatorA-button-m1" class="floor-number${elevatorA.position === (-1) ? ' current-floor' : ''} ${elevatorAComponent.buttonWasPressed((-1))}">-1</div>
         `
         // Elements
         const elevatorAButton9Element = document.getElementById('elevatorA-button-9')
@@ -80,5 +80,8 @@ export const elevatorAComponent = {
         stopEmergencyButtonElement.addEventListener('click', () => {
             elevatorA.resetEmergency()
         })
+    },
+    buttonWasPressed(buttonNumber) {
+        return (elevatorA.travelDestination === buttonNumber) || (elevatorA.destinationMemory.includes(buttonNumber)) ? 'destination' : ''
     }
 }
